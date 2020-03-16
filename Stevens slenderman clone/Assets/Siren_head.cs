@@ -8,14 +8,19 @@ public class Siren_head : MonoBehaviour
     public GameObject player;
     float distance = 50;
     float flashlight_flicks = 0;
+    float move_count = 10;
 
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B))
+
+
+        move_count -= Time.deltaTime;
+        if (move_count <0 )
         {
             Move();
+            move_count = 10;
         }
     }
 
@@ -27,8 +32,10 @@ public class Siren_head : MonoBehaviour
             flashlight_flicks = 0;
             Move();
         }
-            //If it is greater than 3, call Move() function 
-            //and reset flashlight_flicks to 0
+        //If it is greater than 3, call Move() function 
+        //and reset flashlight_flicks to 0
+        
+        //test{ }
     }
 
     public void Move()

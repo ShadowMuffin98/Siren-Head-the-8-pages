@@ -14,7 +14,8 @@ public class Pickup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+       StartCoroutine(ShowText());
+        text.text = "collected 0 of 8 pages";
     }
 
     // Update is called once per frame
@@ -31,8 +32,18 @@ public class Pickup : MonoBehaviour
             image.gameObject.SetActive(true);
             Destroy(collision.gameObject);
             page = page + 1;
-            text.text = "collect "+ page.ToString() + " of 8 pages";
-            
+            text.text = "collected "+ page.ToString() + " of 8 pages";
+            StartCoroutine(ShowText());
         }
     }
+    IEnumerator ShowText()
+    {
+        //0 seconds have passed
+        text.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2);
+        //5 seconds have passed
+        text.gameObject.SetActive(false);
+    }
+
+
 }
