@@ -7,6 +7,7 @@ public class Pickup : MonoBehaviour
     public Image image;
     public Text text;
     int page = 0;
+    public Siren_head SH;
 
 
 
@@ -42,6 +43,7 @@ public class Pickup : MonoBehaviour
         text.gameObject.SetActive(true);
         yield return new WaitForSeconds(2);
         //5 seconds have passed
+        SH.aggravate();
         text.gameObject.SetActive(false);
     }
 
