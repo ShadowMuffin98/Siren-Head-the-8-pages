@@ -40,6 +40,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_StepCycle;
         private float m_NextStep;
         private bool m_Jumping;
+        private bool m_crouch;
         private AudioSource m_AudioSource;
 
         // Use this for initialization
@@ -53,6 +54,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_StepCycle = 0f;
             m_NextStep = m_StepCycle/2f;
             m_Jumping = false;
+            m_crouch = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
         }
@@ -197,6 +199,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 newCameraPosition = m_Camera.transform.localPosition;
                 newCameraPosition.y = m_OriginalCameraPosition.y - m_JumpBob.Offset();
             }
+            if (m_crouch)
+            {
+                newCameraPosition.y += -1; 
+            }
             m_Camera.transform.localPosition = newCameraPosition;
         }
 
@@ -212,10 +218,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
 #if !MOBILE_INPUT
             // On standalone builds, walk/run speed is modified by a key press.
             // keep track of whether or not the character is walking or running
-            m_IsWalking = !Input.GetKey(KeyCode.LeftShift);
+            m_IsWalking = !Input.GetButton("Sprint");
 #endif
+            m_crouch = Input.GetButton("crouch");
             // set the desired speed to be walking or running
             speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
+            if (m_crouch)
+            {
+                speed *= .50f;
+            }
+
             m_Input = new Vector2(horizontal, vertical);
 
             // normalize input if it exceeds 1 in combined length:

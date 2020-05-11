@@ -11,6 +11,8 @@ public class Siren_head : MonoBehaviour
     float flashlight_flicks = 0;
     float move_count = 10;
     public float aggression = -1;
+    public AudioSource AS;
+    public GameObject head_cam;
     private void Start()
     {
         Siren_head_model.SetActive(false);
@@ -29,6 +31,10 @@ public class Siren_head : MonoBehaviour
         }
     }
 
+    public void show_cam()
+    {
+        head_cam.SetActive(true);
+    }
     public void Siren_head_flicked()
     {
         flashlight_flicks += 1;
@@ -62,8 +68,9 @@ public class Siren_head : MonoBehaviour
         angle = Mathf.Deg2Rad * angle;
         Vector3 offset = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
         this.transform.position = player.transform.position + offset*D;
-
-        
+        Vector3 v = transform.position;
+        v.y = Terrain.activeTerrain.SampleHeight(this.transform.position);
+        this.transform.position = v;
 
        
 

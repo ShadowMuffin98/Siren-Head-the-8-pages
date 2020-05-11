@@ -5,7 +5,8 @@ using UnityEngine;
 public class light_flicker : MonoBehaviour
 {
     public Light light;
-
+    public float lightlow = 3;
+    public float lighthigh = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +16,6 @@ public class light_flicker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        light.intensity = Random.Range(3, 5); 
+        light.intensity = Random.Range(lightlow, lighthigh);
     }
 }
