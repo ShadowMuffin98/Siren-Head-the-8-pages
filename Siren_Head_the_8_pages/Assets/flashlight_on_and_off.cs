@@ -26,7 +26,11 @@ public class flashlight_on_and_off : MonoBehaviour
     {
         if (flashlight.isActiveAndEnabled)
         {
-            flashlight_battery = flashlight_battery - flashlight_battery_loss;
+            flashlight_battery = flashlight_battery - flashlight_battery_loss*Time.deltaTime*60;
+            if (Pause_screen.Pause_Screen.Unlimtedflashlight) 
+            {
+                flashlight_battery = 100;
+            }
 
             if (flashlight_battery < 0)
             {

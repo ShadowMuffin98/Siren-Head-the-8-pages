@@ -7,6 +7,8 @@ public class Open_Door : MonoBehaviour
     public float Close = 0;
     public float Open = 122.168f;
     public GameObject openpoint;
+    public AudioSource Door_open_AS;
+    public AudioClip Door_open_AC;
     bool isOpen = false;
     void Update()
     {
@@ -17,8 +19,10 @@ public class Open_Door : MonoBehaviour
             if (dis <2.5 )
             {
             isOpen = !isOpen;
+                Door_open_AS.volume = 0.5f;
+                Door_open_AS.PlayOneShot(Door_open_AC);
             }
-
+            
         }
 
 

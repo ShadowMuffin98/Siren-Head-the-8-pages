@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Hp : MonoBehaviour
 {
-    public Siren_head SH;
+    public List<Siren_head> SH_list;
     public float Health = 100;
     float regeneration = 0.2f; 
     void Start()
@@ -16,33 +16,63 @@ public class Hp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float dis = Vector3.Distance(this.transform.position, SH.transform.position);
-        if (dis<25)
+        bool found_any_SH = false;
+        foreach (Siren_head SH in SH_list)
+        {
+            float dis = Vector3.Distance(this.transform.position, SH.transform.position);
+            if (dis < 25)
 
-        {
-            SH.Siren_hurt.volume = 1;
-            Health -= 0.5f;
-            if (Health <1)
             {
-                SH.show_cam();
-                StartCoroutine(Gameover());
+                found_any_SH = true;
+                SH.Siren_hurt.volume = 1;
+                if (SH.Playerincave())
+                {
+                    Health -= 0.2f;
+                }
+                else
+                {
+                    Health -= 0.5f;
+                }
+                if (Health < 1)
+                {
+                    SH.show_cam();
+                    StartCoroutine(Gameover());
+                }
             }
+            else
+            {
+                SH.Siren_hurt.volume = 0;
+            }
+
         }
-        else 
+        if (found_any_SH == false)
         {
-            SH.Siren_hurt.volume = 0;
-            if (Health <100)
+            if (Health < 100)
             {
                 Health += regeneration;
             }
         }
-        
+
+
+
+
+
+
     }
-    IEnumerator Gameover()
+    public IEnumerator Gameover()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(3.2f);
         SceneManager.LoadScene("Gameover");
 
     }
+    public IEnumerator FastGameover()
+    {
+        yield return new WaitForSeconds(.1f);
+        SceneManager.LoadScene("Gameover");
 
+    }
+    public void steamroller_death()
+    {
+        StartCoroutine(FastGameover());
+    }
 }

@@ -10,8 +10,13 @@ public class Restart_button : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
-    public void click()
+    public void Restart()
     {
         SceneManager.LoadScene("Samplescene");
     }
+    public void Quit()
+    {
+        SceneManager.LoadScene(0);
+    }
+       
 }
