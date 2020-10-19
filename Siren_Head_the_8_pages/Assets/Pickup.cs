@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class Pickup : MonoBehaviour
 {
     public Image image;
@@ -56,6 +57,10 @@ public class Pickup : MonoBehaviour
         }
         SH.aggravate();
         text.gameObject.SetActive(false);
+        if (page == 8)
+        {
+            SceneManager.LoadScene("Win");
+        }
     }
 
 

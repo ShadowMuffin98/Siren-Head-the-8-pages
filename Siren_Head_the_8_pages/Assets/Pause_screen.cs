@@ -20,6 +20,7 @@ public class Pause_screen : MonoBehaviour
     public GameObject Unlockables_Object;
     public Hp player_HP;
     public FirstPersonController FPS;
+    public GameObject Unlockable_button;
     // Start is called before the first frame update
     void Awake()
     {
@@ -27,6 +28,11 @@ public class Pause_screen : MonoBehaviour
 
         {
             Pause_Screen = this;
+        }
+        float Unlock = PlayerPrefs.GetFloat("Unlock", 0);
+        if (Unlock == 0) 
+        {
+            Unlockable_button.SetActive(false);
         }
     }
 
