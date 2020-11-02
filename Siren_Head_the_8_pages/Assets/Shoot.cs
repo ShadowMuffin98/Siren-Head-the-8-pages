@@ -27,7 +27,7 @@ public class Shoot : MonoBehaviour
         }
 
 
-        if (Input.GetMouseButtonDown(0)&&Rocketdisable==false)
+        if (Input.GetButtonDown("Shoot")&&Rocketdisable==false)
         {
             loaded.SetActive(false);
             Rocketdisable = true;

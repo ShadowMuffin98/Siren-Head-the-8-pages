@@ -7,7 +7,7 @@ public class Hp : MonoBehaviour
 {
     public List<Siren_head> SH_list;
     public float Health = 100;
-    float regeneration = 0.2f; 
+    float regeneration = 0.3f; 
     void Start()
     {
         
@@ -31,7 +31,7 @@ public class Hp : MonoBehaviour
                 }
                 else
                 {
-                    Health -= 0.5f;
+                    Health -= 0.4f;
                 }
                 if (Health < 1)
                 {

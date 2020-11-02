@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 public class Pause_screen : MonoBehaviour
 {
     public static Pause_screen Pause_Screen;
@@ -21,6 +22,7 @@ public class Pause_screen : MonoBehaviour
     public Hp player_HP;
     public FirstPersonController FPS;
     public GameObject Unlockable_button;
+    public GameObject defaultbutton;
     // Start is called before the first frame update
     void Awake()
     {
@@ -57,6 +59,8 @@ public class Pause_screen : MonoBehaviour
         Pause_UI.SetActive(true);
         Time.timeScale = 0;
         FPS.enabled = false;
+        EventSystem.current.SetSelectedGameObject(defaultbutton);
+   
     }
     public void Pause_off()
     {

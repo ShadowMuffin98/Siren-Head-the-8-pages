@@ -95,6 +95,10 @@ public class Siren_head : MonoBehaviour
         }
         else
         {
+            if (aggression > 5)
+            {
+                animator.SetBool("Spin", true);
+            }
             this.transform.localEulerAngles = Vector3.zero;
             Siren_head_model.SetActive(true);
             Siren_head_head_model.SetActive(false);

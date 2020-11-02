@@ -38,7 +38,7 @@ public class flashlight_on_and_off : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1")&&Time.timeScale>0)
         {
             source.PlayOneShot(click);
             flashlight_hit();
